@@ -19,8 +19,10 @@ In this work, we present the Explicit Motion Information Mining (EMIM) module, w
 # How to Use
 - Please follow the installation instructions provided in [Uniformer](https://github.com/Sense-X/UniFormer/tree/main/video_classification) for environment preparation.
 - Training: Suppose we want to train a small model on Something-Something V1 using the 16-frame setting. Please run the following script:
+  
   `bash exp/uniformer_s16_sthv1_pre1k_uniformer_extra_attn64_ATTN_ATTN_7_7_LG/run.sh`
 - Test: Suppose we want to evaluate a small model on Something-Something V1 using the 16-frame setting. Please run the following script:
+  
   `bash exp/uniformer_s16_sthv1_pre1k_uniformer_extra_attn64_ATTN_ATTN_7_7_LG/test.sh`
 
 
