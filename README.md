@@ -26,5 +26,23 @@ In this work, we present the Explicit Motion Information Mining (EMIM) module, w
   `bash exp/uniformer_s16_sthv1_pre1k_uniformer_extra_attn64_ATTN_ATTN_7_7_LG/test.sh`
 
 
+# Citing:
+Please kindly cite the following paper, if you use WildFish in your work.
+
+```
+@inproceedings{zhuang2018wildfish,
+  title={WildFish: A Large Benchmark for Fish Recognition in the Wild},
+  author={Zhuang, Peiqin and Wang, Yali and Qiao, Yu},
+  booktitle={2018 ACM Multimedia Conference on Multimedia Conference},
+  pages={1301--1309},
+  year={2018},
+  organization={ACM}
+}
+```
+
+# Contact:
+Please feel free to contact zpq0316@163.com, if you have any questions about WildFish.
+
+
 
 
