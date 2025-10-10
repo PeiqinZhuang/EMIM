@@ -11,6 +11,6 @@ In this work, we present the Explicit Motion Information Mining (EMIM) module, w
 <img src="https://github.com/PeiqinZhuang/EMIM/blob/main/figures/framework.png" alt="General Framework" style="width:80%; display:block; margin:auto;">
 
 <figure style="text-align: center;">
-  <img src="[example.png](https://github.com/PeiqinZhuang/EMIM/blob/main/figures/framework.png)" alt="General Framework" style="width:80%;">
+  <img src="https://github.com/PeiqinZhuang/EMIM/blob/main/figures/framework.png" alt="General Framework" style="width:80%;">
   <figcaption> Explicit Motion Information Mining (EMIM) framework </figcaption>
 </figure>
