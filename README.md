@@ -12,5 +12,5 @@ In this work, we present the Explicit Motion Information Mining (EMIM) module, w
 
 <figure style="text-align: center;">
   <img src="https://github.com/PeiqinZhuang/EMIM/blob/main/figures/framework.png" alt="General Framework" style="width:80%;">
-  <figcaption> Explicit Motion Information Mining (EMIM) framework </figcaption>
+    <figcaption> Explicit Motion Information Mining (EMIM) module.</figcaption>
 </figure>
