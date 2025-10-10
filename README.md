@@ -6,3 +6,6 @@ In this work, we present the Explicit Motion Information Mining (EMIM) module, w
 
 ![Property Comparison](https://github.com/PeiqinZhuang/EMIM/blob/main/figures/property.png)
 ![General Framework](https://github.com/PeiqinZhuang/EMIM/blob/main/figures/framework.png)
+
+<img src="https://github.com/PeiqinZhuang/EMIM/blob/main/figures/framework.png" alt="General Framework" style="width:80%; display:block; margin:auto;">
+
