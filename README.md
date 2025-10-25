@@ -30,13 +30,11 @@ In this work, we present the Explicit Motion Information Mining (EMIM) module, w
 Please kindly cite the following paper, if you use WildFish in your work.
 
 ```
-@inproceedings{zhuang2018wildfish,
-  title={WildFish: A Large Benchmark for Fish Recognition in the Wild},
-  author={Zhuang, Peiqin and Wang, Yali and Qiao, Yu},
-  booktitle={2018 ACM Multimedia Conference on Multimedia Conference},
-  pages={1301--1309},
-  year={2018},
-  organization={ACM}
+@article{zhuang2025renaissance,
+  title={A Renaissance of Explicit Motion Information Mining from Transformers for Action Recognition},
+  author={Zhuang, Peiqin and Bai, Lei and Wu, Yichao and Liang, Ding and Zhou, Luping and Wang, Yali and Ouyang, Wanli},
+  journal={arXiv preprint arXiv:2510.18705},
+  year={2025}
 }
 ```
 
