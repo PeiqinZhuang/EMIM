@@ -41,6 +41,9 @@ Please kindly cite the following paper, if you use EMIM in your work.
 # Contact:
 Please feel free to contact zpq0316@163.com, if you have any questions about WildFish.
 
+# Acknowledgement:
+Some of the codes are borrowed from [Uniformer](https://github.com/Sense-X/UniFormer) and [Neighborhood Attention](https://github.com/SHI-Labs/Neighborhood-Attention-Transformer). Many thanks to them.
+
 
 
 
