@@ -27,7 +27,7 @@ In this work, we present the Explicit Motion Information Mining (EMIM) module, w
 
 
 # Citing:
-Please kindly cite the following paper, if you use WildFish in your work.
+Please kindly cite the following paper, if you use EMIM in your work.
 
 ```
 @article{zhuang2025renaissance,
