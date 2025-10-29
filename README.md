@@ -26,6 +26,10 @@ In this work, we present the Explicit Motion Information Mining (EMIM) module, w
   `bash exp/uniformer_s16_sthv1_pre1k_uniformer_extra_attn64_ATTN_ATTN_7_7_LG/test.sh`
 
 # Take Home Message
+```python
+# 这是 Python 代码示例
+for i in range(5):
+    print(i)
 
 
 # Citing:
