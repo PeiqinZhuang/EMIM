@@ -25,6 +25,8 @@ In this work, we present the Explicit Motion Information Mining (EMIM) module, w
   
   `bash exp/uniformer_s16_sthv1_pre1k_uniformer_extra_attn64_ATTN_ATTN_7_7_LG/test.sh`
 
+# Take Home Message
+
 
 # Citing:
 Please kindly cite the following paper, if you use EMIM in your work.
