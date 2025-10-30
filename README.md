@@ -27,9 +27,36 @@ In this work, we present the Explicit Motion Information Mining (EMIM) module, w
 
 # Take Home Message
 ```python
-# 这是 Python 代码示例
-for i in range(5):
-    print(i)
+
+class Attention(nn.Module):
+    def __init__(self, dim, num_heads=8, qkv_bias=False, qk_scale=None):
+        super().__init__()
+        self.num_heads = num_heads
+        head_dim = dim // num_heads
+        self.head_dim = head_dim
+        self.scale = qk_scale or head_dim ** -0.5
+
+        self.qkv = nn.Linear(dim, dim * 3, bias=qkv_bias)
+        self.proj = nn.Linear(dim, dim)
+
+    
+    def forward(self, x):
+            B, N, C = x.shape
+            qkv = self.qkv(x).reshape(B, N, 3, self.num_heads, C // self.num_heads).permute(2, 0, 3, 1, 4)
+            q, k, v = qkv[0], qkv[1], qkv[2]   # make torchscript happy (cannot use tensor as tuple)
+
+            attn_original = (q @ k.transpose(-2, -1))
+            attn = (q @ k.transpose(-2, -1)) * self.scale
+            with torch.cuda.amp.autocast(enabled=False):
+                attn = attn.float().softmax(dim=-1)
+            attn = self.attn_drop(attn)
+
+            attn_x = (attn @ v).transpose(1, 2).reshape(B, N, C)
+            x = self.proj(attn_x)
+
+            return x
+
+
 ```
 
 
