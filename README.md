@@ -135,7 +135,10 @@ class EMIM(nn.Module):
         
         
         return x
-        
+
+
+# As illustrated, our method can directly reuse the parameters from the original Attention module, and simply introduces a motion_conv module to equip it with motion modeling capability.
+
         
 
 ```
