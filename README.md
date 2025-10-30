@@ -61,6 +61,8 @@ class Attention(nn.Module):
 
 ```python
 from nat_with_rpb.natten import NATTENAVFunction_With_RPB as NATTENAVFunction_With_RPB
+from timm.models.layers import trunc_normal_
+
 
 Input Shape: [B, TxHxW, C]
 class EMIM(nn.Module):
