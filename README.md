@@ -27,6 +27,7 @@ In this work, we present the Explicit Motion Information Mining (EMIM) module, w
 
 # Take Home Message
 ```python
+Input Shape: [B, TxHxW, C]
 
 class Attention(nn.Module):
     def __init__(self, dim, num_heads=8, qkv_bias=False, qk_scale=None):
@@ -61,8 +62,8 @@ class Attention(nn.Module):
 ```python
 from nat_with_rpb.natten import NATTENAVFunction_With_RPB as NATTENAVFunction_With_RPB
 
-
-class Attention(nn.Module):
+Input Shape: [B, TxHxW, C]
+class EMIM(nn.Module):
     def __init__(self, dim, num_heads=8, qkv_bias=False, qk_scale=None, max_disp=7):
         super().__init__()
         self.num_heads = num_heads
@@ -72,7 +73,6 @@ class Attention(nn.Module):
 
         self.qkv = nn.Linear(dim, dim * 3, bias=qkv_bias)
         self.proj = nn.Linear(dim, dim)
-
 
 
         self.max_disp = max_disp
