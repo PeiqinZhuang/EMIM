@@ -56,6 +56,87 @@ class Attention(nn.Module):
 
             return x
 
+```
+
+```python
+from nat_with_rpb.natten import NATTENAVFunction_With_RPB as NATTENAVFunction_With_RPB
+
+
+class Attention(nn.Module):
+    def __init__(self, dim, num_heads=8, qkv_bias=False, qk_scale=None, max_disp=7):
+        super().__init__()
+        self.num_heads = num_heads
+        head_dim = dim // num_heads
+        self.head_dim = head_dim
+        self.scale = qk_scale or head_dim ** -0.5
+
+        self.qkv = nn.Linear(dim, dim * 3, bias=qkv_bias)
+        self.proj = nn.Linear(dim, dim)
+
+
+
+        self.max_disp = max_disp
+        self.motion_conv = nn.Sequential(
+                nn.Linear(self.max_disp**2, self.max_disp**2 * 4),
+                QuickGELU(),
+                nn.Linear(self.max_disp**2 * 4, self.head_dim))
+        self.padding = nn.ConstantPad2d(self.max_disp // 2, 1e-6)
+
+        self.rpb = nn.Parameter(torch.zeros(self.num_heads, self.max_disp, self.max_disp))
+        trunc_normal_(self.rpb, std=0.02)
+
+    def forward(self, x):
+            B, N, C = x.shape
+            T= 16
+            H = int(math.sqrt(N//16))
+            W = H
+
+            qkv = self.qkv(x).reshape(B, N, 3, self.num_heads, C // self.num_heads).permute(2, 0, 3, 1, 4)
+            q, k, v = qkv[0], qkv[1], qkv[2]   # make torchscript happy (cannot use tensor as tuple) [B n s d]
+
+            q = rearrange(q, 'b n (t s) d -> (b n) d t s', t=T)
+            q_prefix = q[:, :, :-1, :]
+            q_prefix = torch.cat([q_prefix, q_prefix[:, :, -1:, :]], dim=2)
+            q_prefix = rearrange(q_prefix, '(b n) d t (h w) -> (b t) n h w d', b=B, n=self.num_heads, h=H, w=W)
+            q_prefix = q_prefix * self.scale
+
+            k = rearrange(k, 'b n (t h w)  d -> (b n)  t d h w', h=H, w=W)
+            k_postfix = k[:, 1:, :, :, :]
+            k_postfix = torch.cat([k_postfix, k_postfix[:, -1:, :, :, :]], dim=1)  # [b t d h w]
+            k_postfix = rearrange(k_postfix, 'b t d h w -> (b t) d h w')
+            k_postfix = self.padding(k_postfix)
+            k_postfix = rearrange(k_postfix, '(b n t) d h w -> (b t) n h w d', b=B, n=self.num_heads)
+
+            v = rearrange(v, 'b n (t h w)  d -> (b n) t d h w', h=H, w=W)
+            v_postfix = v[:, 1:, :, :, :]
+            v_postfix = torch.cat([v_postfix, v_postfix[:, -1:, :, :, :]], dim=1)
+            v_postfix = rearrange(v_postfix, 'b t d h w -> (b t) d h w')
+            v_postfix = self.padding(v_postfix)
+            v_postfix = rearrange(v_postfix, '(b n t) d h w -> (b t) n h w d', b=B, n=self.num_heads)
+
+
+            attn = NATTENQKRPBFunction_With_RPB.apply(q_prefix, k_postfix, self.rpb)
+
+            motion_attn = rearrange(attn, '(b t) n h w p -> (b n t) (h w) p', b=B, t=T, n=self.num_heads, h=H, w=W)
+            motion_x = self.motion_conv(motion_attn)
+            motion_x = rearrange(motion_x, '(b n t) (h w) d -> b (t h w) (n d)', b=B, n=self.num_heads, t=T, h=H, w=W)
+
+
+            context_attn = attn
+            with torch.cuda.amp.autocast(enabled=False):
+                context_attn = F.softmax(context_attn.float(), dim=-1)
+            
+            context_x = NATTENAVFunction_With_RPB.apply(context_attn, v_postfix)
+            context_x = rearrange(context_x, '(b t) n h w d -> b (t h w) (n d)', b=B, t=T)
+
+            x = context_x + motion_x
+
+            x = self.proj(x)
+            
+            
+            return x
+        
+        
 
 ```
 
