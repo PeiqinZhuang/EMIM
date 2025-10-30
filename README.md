@@ -137,9 +137,18 @@ class EMIM(nn.Module):
         return x
 
 
-# As illustrated, our method can directly reuse the parameters from the original Attention module, and simply introduces a motion_conv module to equip it with motion modeling capability.
+# 1. As illustrated, our method can directly reuse the parameters from the original Attention module,
+and simply introduces a motion_conv module to equip it with motion modeling capability.
+2. However, if you would like to replace your original Attention module with our EMIM module, it is
+recommended to perform zero initialization at the beginning to maintain parameter stability. （Quite useful tips for parameter efficient finetuning)
 
-        
+for name, p in self.named_parameters():
+    if 'motion_conv.0.weight' in name:
+        nn.init.xavier_uniform_(p)
+        print('Re-initialize {}'.format(name))
+    if 'motion_conv.2.weight' in name or 'motion_conv.2.bias' in name:
+        nn.init.constant_(p, 0.0)
+        print('Re-initialize {}'.format(name))
 
 ```
 
