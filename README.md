@@ -161,7 +161,10 @@ for name, p in self.named_parameters():
 Please kindly cite the following paper, if you use EMIM in your work.
 
 ```
-@article{zhuang2025renaissance, title={A Renaissance of Explicit Motion Information Mining from Transformers for Action Recognition}, author={Zhuang, Peiqin and Bai, Lei and Wu, Yichao and Liang, Ding and Zhou, Luping and Wang, Yali and Ouyang, Wanli}, journal={Pattern Recognition}, pages={112645}, year={2025}, publisher={Elsevier} }
+@article{zhuang2025renaissance,
+title={A Renaissance of Explicit Motion Information Mining from Transformers for Action Recognition},
+author={Zhuang, Peiqin and Bai, Lei and Wu, Yichao and Liang, Ding and Zhou, Luping and Wang, Yali and Ouyang, Wanli},
+journal={Pattern Recognition}, pages={112645}, year={2025}, publisher={Elsevier} }
 ```
 
 # Contact:
