@@ -25,6 +25,9 @@ In this work, we present the Explicit Motion Information Mining (EMIM) module, w
   
   `bash exp/uniformer_s16_sthv1_pre1k_uniformer_extra_attn64_ATTN_ATTN_7_7_LG/test.sh`
 
+# Note：
+A technical report (in Chinese) is provided alongside this codebase. If you are interested in it, please refer to this [link](https://zhuanlan.zhihu.com/p/1921593296117041026).
+
 # Take Home Message
 ```python
 Input Shape: [B, TxHxW, C]
@@ -155,8 +158,7 @@ for name, p in self.named_parameters():
         print('Re-initialize {}'.format(name))
 
 ```
-# News：
-A technical report (in Chinese) is provided alongside this codebase. If you are interested in it, please refer to this [link](https://zhuanlan.zhihu.com/p/1921593296117041026).
+
 # Citing:
 Please kindly cite the following paper, if you use EMIM in your work.
 
