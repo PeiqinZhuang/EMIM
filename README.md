@@ -155,8 +155,8 @@ for name, p in self.named_parameters():
         print('Re-initialize {}'.format(name))
 
 ```
-
-
+# News：
+A technical report (in Chinese) is provided alongside this codebase. If you are interested in it, please refer to this [link](https://zhuanlan.zhihu.com/p/1921593296117041026).
 # Citing:
 Please kindly cite the following paper, if you use EMIM in your work.
 
